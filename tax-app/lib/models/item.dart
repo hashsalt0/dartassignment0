@@ -10,10 +10,12 @@ class Item {
   
   Item(this._name, this._price);
 
+  /// returns the description of the item.
   @override
   String toString(){
     StringBuffer sb = StringBuffer();
     sb.writeln("Item Name: $name");
+    sb.writeln("Item Type: ${runtimeType}");
     sb.writeln("Item Price: $price");
     sb.writeln("Quantity: $quantity");
     sb.writeln("Sales Tax liability per item: ${getTax()}");
