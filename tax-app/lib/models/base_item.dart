@@ -1,14 +1,16 @@
 
-class Item {
+import 'const.dart';
+
+class BaseItem {
   static final tag = "Item";
 
   final String _name;
 
   final double _price;
 
-  int quantity = 0;
+  int _quantity = defaultQuantity;
   
-  Item(this._name, this._price);
+  BaseItem(this._name, this._price);
 
   @override
   String toString(){
@@ -27,4 +29,6 @@ class Item {
   get price => _price;
 
   get name => _name;
+
+  get quantity => _quantity;
 }

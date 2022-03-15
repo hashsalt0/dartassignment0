@@ -1,6 +1,6 @@
-import 'Item.dart';
+import 'base_item.dart';
 
-class ImportedItem extends Item {
+class ImportedItem extends BaseItem {
   late double _itemTax;
 
   ImportedItem(String name, double price) : super(name, price) {
