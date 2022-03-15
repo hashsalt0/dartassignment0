@@ -8,7 +8,7 @@ class BaseItem {
 
   final double _price;
 
-  int _quantity = defaultQuantity;
+  int quantity = defaultQuantity;
   
   BaseItem(this._name, this._price);
 
@@ -29,6 +29,4 @@ class BaseItem {
   get price => _price;
 
   get name => _name;
-
-  get quantity => _quantity;
 }
