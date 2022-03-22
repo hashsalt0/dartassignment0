@@ -36,6 +36,13 @@ class CommandLineParser {
   }
 
   void process() {
+    /// Processing each option argument first
+    optionsArgs.forEach((Option option, List<Arg> args) {
+      args.forEach((arg) {
+        arg.process(option);
+      });
+    });
+
     // Print help message if exists and then return
     if (options.containsKey(Builder.getHelpOption())) {
       Builder.allOptions().forEach((x) => {Log.info(x.description)});
@@ -46,13 +53,6 @@ class CommandLineParser {
     if (!options.containsKey(Builder.getTypeOption())) {
       throw OptionMissingException("Type Option is required");
     }
-
-    /// Processing each option argument first
-    optionsArgs.forEach((Option option, List<Arg> args) {
-      args.forEach((arg) {
-        arg.process(option);
-      });
-    });
 
     String? itemType = options[Builder.getTypeOption()]?.toUpperCase();
     /// Finding the Item type from String
@@ -137,7 +137,7 @@ class CommandLineParser {
     if (option.hasValue == true && value == unknownValue) {
       if (iter.moveNext()) {
         value = iter.current;
-      } else {
+      } else if(optionsArgs[option]?.isEmpty == true){
         throw ParseException("Expected a value for ${option.longOption}");
       }
     }
