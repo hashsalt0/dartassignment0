@@ -1,14 +1,13 @@
 
-import 'const.dart';
 
-class BaseItem {
+abstract class BaseItem {
   static final tag = "Item";
 
   final String _name;
 
   final double _price;
 
-  int quantity = defaultQuantity;
+  late int quantity;
   
   BaseItem(this._name, this._price);
 
@@ -18,13 +17,13 @@ class BaseItem {
     sb.writeln("Item Name: $name");
     sb.writeln("Item Price: $price");
     sb.writeln("Quantity: $quantity");
-    sb.writeln("Sales Tax liability per item: ${getTax()}");
-    sb.write("Final Price: ${_price + getTax()}");
+    sb.writeln("Sales Tax liability per item: ${calculateTax()}");
+    sb.write("Final Price: ${_price + calculateTax()}");
     return sb.toString();
   }
 
 
-  double getTax() => 0;
+  double calculateTax();
 
   get price => _price;
 

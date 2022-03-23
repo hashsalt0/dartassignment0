@@ -1,10 +1,6 @@
 
-class InvalidItemTypeException  {
-  String cause;
-  InvalidItemTypeException(this.cause);
+import 'base_exception.dart';
 
-  @override
-  String toString(){
-    return "${this.runtimeType} :: $cause";
-  }
+class InvalidItemTypeException extends BaseException{
+  InvalidItemTypeException(String cause) : super(cause);
 }

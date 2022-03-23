@@ -1,17 +1,12 @@
-
 import 'base_item.dart';
-import 'const.dart';
+import 'constraints.dart';
 
 class RawItem extends BaseItem {
-    static const String tag = "RawItem";
-    late double _itemTax;
+  RawItem(String name, double price) : super(name, price);
 
-    RawItem(String name, double price) : super(name, price){
-        _itemTax = rawItemTaxCharges * price;
-    }
-    
-    @override
-    double getTax() {
-        return _itemTax;
-    }
+  @override
+  double calculateTax() {
+    double _itemTax = Constraints.rawItemTaxCharges * price;
+    return _itemTax;
+  }
 }
