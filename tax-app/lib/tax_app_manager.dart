@@ -16,13 +16,17 @@ import 'models/base_item.dart';
 
 class TaxAppManager {
   
-
+  /// Read from command line while printing the message
   String? _read(String message) {
     Log.info(message);
     return stdin.readLineSync(encoding: utf8);
   }
 
-  String readWithValidation(String message, String defaultValue,
+  /// Read from command line while printing the message with validation
+  /// @param message - text to be displayed in command line
+  /// @param validation - the validation function that has a String?  as parameter and return a boolean value
+  /// @param error - the function that is called when the input is invalid
+  String _readWithValidation(String message, String defaultValue,
       bool validation(String? val), void error(String)) {
     String? input = null;
     while (validation(input) == false) {
@@ -34,7 +38,7 @@ class TaxAppManager {
     return input ?? defaultValue;
   }
 
-  ItemType getItemType(String input) {
+  ItemType _getItemType(String input) {
     input = input.toUpperCase();
     return ItemType.values.firstWhere((e) => e.toString() == "${ItemType}.${input}");
   }
@@ -48,23 +52,23 @@ class TaxAppManager {
     ItemType itemType;
     do {
       try {
-        name = readWithValidation(
+        name = _readWithValidation(
             "Enter Item Name :: ", Constraints.defaultName, Validations.validateName, (input) {
           throw InvalidItemNameException(
               "Invalid Name, Name should start with a capital letter and must contain alphaberts");
         });
-        price = double.parse(readWithValidation(
+        price = double.parse(_readWithValidation(
             "Enter Item Price :: ", Constraints.defaultPrice.toString(), Validations.validatePrice, (input) {
           throw InvalidItemPriceException(
               "Price should be any real value form 1 to inf");
         }));
-        quantity = int.parse(readWithValidation(
+        quantity = int.parse(_readWithValidation(
             "Enter Item Quantity :: ", Constraints.defaultQuantity.toString(), Validations.validateQuantity,
             (input) {
           throw InvalidItemQuantityException(
               "Quantity should be any integer value form 1 to inf");
         }));
-        itemType = getItemType(readWithValidation(
+        itemType = _getItemType(_readWithValidation(
             "Enter Item Type :: ", Constraints.defaultItemType.toString(), Validations.validateType, (input) {
           throw InvalidItemTypeException(
               "Item can be of only of the following types ${ItemType.values}");
