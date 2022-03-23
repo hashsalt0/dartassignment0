@@ -79,9 +79,9 @@ class TaxAppManager {
         Log.out("--------------------------------");
         input = _read("Do you want to enter details of any other item (y/n): ");
       } on BaseException catch (exception) {
-        print(exception.toString());
+        Log.error(exception.toString());
       } on Exception catch (exception, stackTrace) {
-        print(exception.toString());
+        Log.error(exception.toString());
         print(stackTrace);
       }
     } while (input == null ||

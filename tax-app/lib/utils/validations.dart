@@ -1,5 +1,6 @@
 class Validations {
   static bool validateName(String? name) {
+    if (name?.isEmpty == true) return true;
     if (name == null) return false;
     // start with capital letter afterwards it can be both
     return RegExp(r'^[A-Z][A-Za-z]+$').hasMatch(name);
