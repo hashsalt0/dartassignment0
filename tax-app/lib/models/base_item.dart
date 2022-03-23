@@ -16,6 +16,7 @@ abstract class BaseItem {
     StringBuffer sb = StringBuffer();
     sb.writeln("Item Name: $name");
     sb.writeln("Item Price: $price");
+    sb.writeln("Item Type: ${this.runtimeType}");
     sb.writeln("Quantity: $quantity");
     sb.writeln("Sales Tax liability per item: ${calculateTax()}");
     sb.write("Final Price: ${_price + calculateTax()}");

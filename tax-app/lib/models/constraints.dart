@@ -12,7 +12,6 @@ class Constraints {
 // Imported Items static constraints
   static const double importDuty = 0.1;
   static const double extraImportDutyOverLimit = 0.05;
-
   static const double extraChargesInLimit = 10;
   static const double extraChargesUnderLimit = 5;
 

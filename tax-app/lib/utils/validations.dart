@@ -1,3 +1,5 @@
+import 'package:tax_app/models/item_type.dart';
+
 class Validations {
   static bool validateName(String? name) {
     if (name?.isEmpty == true) return true;
@@ -8,8 +10,8 @@ class Validations {
 
   static bool validateType(String? type) {
     if (type == null) return false;
-    return RegExp(r'^(IMPORTED|MANUFACUTRED|RAW)$', caseSensitive: false)
-        .hasMatch(type);
+    int? val = int.tryParse(type);
+    return val != null && val >= 0 && val < ItemType.values.length;
   }
 
   static bool validatePrice(String? price) {

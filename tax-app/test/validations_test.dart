@@ -74,17 +74,17 @@ void testQuantityValidationValidNumbers() {
 }
 
 void testItemTypeValidationInvalidTypes() {
-  String toTest = "djafi";
+  String toTest = "3";
   expect(false, Validations.validateType(toTest));
   toTest = "djafi";
   expect(false, Validations.validateType(toTest));
 }
 
 void testItemTypeValidationValidTypes() {
-  String toTest = "Raw";
+  String toTest = "0";
   expect(true, Validations.validateType(toTest));
-  toTest = "Imported";
+  toTest = "1";
   expect(true, Validations.validateType(toTest));
-  toTest = "MANUFACUTRED";
+  toTest = "2";
   expect(true, Validations.validateType(toTest));
 }

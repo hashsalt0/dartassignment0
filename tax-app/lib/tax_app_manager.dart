@@ -39,8 +39,8 @@ class TaxAppManager {
   }
 
   ItemType _getItemType(String input) {
-    input = input.toUpperCase();
-    return ItemType.values.firstWhere((e) => e.toString() == "${ItemType}.${input}");
+    int index = int.tryParse(input) ?? 0;
+    return ItemType.values[index];
   }
 
   /// Application Loop
@@ -69,9 +69,8 @@ class TaxAppManager {
               "Quantity should be any integer value form 1 to inf");
         }));
         itemType = _getItemType(_readWithValidation(
-            "Enter Item Type :: ", Constraints.defaultItemType.toString(), Validations.validateType, (input) {
-          throw InvalidItemTypeException(
-              "Item can be of only of the following types ${ItemType.values}");
+            "Enter Item Type :: \n ${ItemType.values.asMap()}", Constraints.defaultItemType.toString(), Validations.validateType, (input) {
+          throw InvalidItemTypeException("Enter a value less than ${ItemType.values.length}");
         }));
         BaseItem item = ItemFactory.getItem(itemType, name, price, quantity);
         Log.out("--------------------------------");
